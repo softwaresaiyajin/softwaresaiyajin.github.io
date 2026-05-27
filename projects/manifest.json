@@ -1,5 +1,23 @@
 [
   {
+    "slug": "cebu-pacific",
+    "title": "Cebu Pacific",
+    "summary": "Airline mobile app experience involving travel booking flows, passenger self-service, mobile UX, and production app delivery.",
+    "techStack": [
+      "Mobile",
+      "Travel",
+      "Airline"
+    ],
+    "urls": [
+      {
+        "cta": "View on App Store →",
+        "link": "https://apps.apple.com/ph/app/cebu-pacific/id1210712639"
+      }
+    ],
+    "category": "Travel",
+    "icon": "projects/cebu-pacific/images/app-icon/app-icon.jpg"
+  },
+  {
     "slug": "circlein",
     "title": "CircleIn",
     "summary": "Learning platform app with complex messaging, chat, communities, media, analytics, and modern iOS architecture work.",
@@ -15,7 +33,8 @@
         "link": "https://apps.apple.com/us/app/circlein/id6444419138"
       }
     ],
-    "category": "Learning Platform"
+    "category": "Learning Platform",
+    "icon": "projects/circlein/images/app-icon/app-icon.jpg"
   },
   {
     "slug": "itexmo",
@@ -32,7 +51,8 @@
         "link": "https://apps.apple.com/ph/app/itexmo/id6447108013"
       }
     ],
-    "category": "Messaging"
+    "category": "Messaging",
+    "icon": "projects/itexmo/images/app-icon/app-icon.jpg"
   },
   {
     "slug": "ozsale",
@@ -66,7 +86,8 @@
         "link": "https://apps.apple.com/us/app/paysera-super-app/id737308884"
       }
     ],
-    "category": "Fintech"
+    "category": "Fintech",
+    "icon": "projects/paysera/images/app-icon/app-icon.jpg"
   },
   {
     "slug": "viva-aerobus",
@@ -83,6 +104,7 @@
         "link": "https://apps.apple.com/us/app/viva-aerobus-fly/id1563307248"
       }
     ],
-    "category": "Travel"
+    "category": "Travel",
+    "icon": "projects/viva-aerobus/images/app-icon/app-icon.jpg"
   }
 ]

@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build": "node scripts/generate-project-manifest.mjs && (kill $(lsof -ti tcp:3000) 2>/dev/null || true) && (sleep 1 && open http://localhost:3000 >/dev/null 2>&1 &) && python3 -m http.server 3000",
+    "download:assets": "node scripts/download-app-store-assets.mjs",
     "generate:projects": "node scripts/generate-project-manifest.mjs"
   }
 }

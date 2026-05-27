@@ -9,8 +9,8 @@ const imageExtensions = new Set(['.avif', '.gif', '.jpeg', '.jpg', '.png', '.web
 
 const toWebPath = (filePath) => path.relative(rootDirectory, filePath).split(path.sep).join('/');
 
-const getFirstImage = async (projectDirectory) => {
-  const imagesDirectory = path.join(projectDirectory, 'images');
+const getFirstImage = async (projectDirectory, assetFolder) => {
+  const imagesDirectory = path.join(projectDirectory, 'images', assetFolder);
 
   try {
     const imageEntries = await fs.readdir(imagesDirectory, { withFileTypes: true });
@@ -48,7 +48,7 @@ const normalizeProject = async (directoryName) => {
   const projectDirectory = path.join(projectsDirectory, directoryName);
   const descriptionPath = path.join(projectDirectory, 'description.json');
   const description = JSON.parse(await fs.readFile(descriptionPath, 'utf8'));
-  const image = description.image || await getFirstImage(projectDirectory);
+  const icon = description.icon || await getFirstImage(projectDirectory, 'app-icon');
 
   return {
     slug: directoryName,
@@ -57,7 +57,7 @@ const normalizeProject = async (directoryName) => {
     techStack: description.techStack || description['tech-stack'] || [],
     urls: normalizeUrls(description),
     category: description.category,
-    ...(image ? { image } : {})
+    ...(icon ? { icon } : {})
   };
 };
 

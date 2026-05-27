@@ -1,0 +1,12 @@
+{
+  "title": "Cebu Pacific",
+  "summary": "Airline mobile app experience involving travel booking flows, passenger self-service, mobile UX, and production app delivery.",
+  "tech-stack": ["Mobile", "Travel", "Airline"],
+  "urls": [
+    {
+      "cta": "View on App Store →",
+      "link": "https://apps.apple.com/ph/app/cebu-pacific/id1210712639"
+    }
+  ],
+  "category": "Travel"
+}

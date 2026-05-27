@@ -1,16 +1,16 @@
 {
   "meta": {
-    "title": "Gerald Adorza | Mobile Developer Portfolio",
-    "description": "Mobile developer portfolio of Gerald Adorza — iOS, React Native, Kotlin, fintech, messaging, e-commerce, and learning platform apps."
+    "title": "Gerald Cadiz Adorza | Mobile Developer Portfolio",
+    "description": "Mobile applications developer experienced in native and cross-platform iOS, Android, Windows, fintech, e-commerce, airlines, gaming, architecture, and engineering leadership."
   },
   "hero": {
-    "name": "Gerald Adorza",
+    "name": "Gerald Cadiz Adorza",
     "role": "iOS Engineer at Fintech Company",
     "location": "Metro Manila",
     "profileImage": "user/images/profile.png",
-    "profileImageAlt": "Gerald Adorza",
+    "profileImageAlt": "Gerald Cadiz Adorza",
     "coverColor": "#9fb4b4",
-    "summary": "I'm Gerald Adorza, a mobile developer from the Philippines with experience shipping apps across iOS, React Native, and native Android. I focus on reliable app architecture, native integrations, releases, and practical product execution.",
+    "summary": "As a mobile applications developer, I have extensive experience in both native and cross-platform development for iOS, Android, and Windows. My portfolio includes work with clients across diverse industries, including gaming, e-commerce, airlines, and fintech. I have led teams of developers and QA testers using Agile methodology to deliver high-performance applications.",
     "actions": [
       {
         "label": "Contact info",
@@ -43,20 +43,28 @@
     "summary": "",
     "items": [
       {
-        "title": "Native iOS",
-        "summary": "Swift, UIKit, SwiftUI, Combine, MVVM, app architecture, debugging, releases."
+        "title": "Mobile languages",
+        "summary": "Swift 9+ years, Objective-C 8 years, React Native 4+ years, Kotlin 4+ years, Java 4+ years, and C# for Windows Phone and Xamarin.Forms."
       },
       {
-        "title": "React Native",
-        "summary": "Cross-platform features, native bridge work, app-store delivery, product flows."
+        "title": "Native and cross-platform apps",
+        "summary": "Production development across iOS, Android, watchOS, Windows, React Native, Xamarin.Forms, and mobile app widgets."
       },
       {
-        "title": "Native integrations",
-        "summary": "In-app purchases, analytics, notifications, chat SDKs, media, and native modules."
+        "title": "Architecture and leadership",
+        "summary": "Architecture decision-making, prototyping, engineering standards, technical leadership, Agile Scrum delivery, code review, and team mentoring."
       },
       {
-        "title": "AI workflows",
-        "summary": "Using AI coding tools for bug fixing, feature development, code review, and workflow automation."
+        "title": "Tools and platforms",
+        "summary": "Xcode, Android Studio, Visual Studio, SPM, Cocoapods, Carthage, Firebase, AWS, MongoDB, Jira, GitHub, Bitbucket, Azure DevOps, Trello, and Confluence."
+      },
+      {
+        "title": "SDKs and integrations",
+        "summary": "RESTful APIs, Braintree, PayPal, Visa Checkout, Facebook, Twitter, Crashlytics, Firebase, AppInsights, AppCenter, Bitrise, ads, social, and analytics frameworks."
+      },
+      {
+        "title": "Delivery and operations",
+        "summary": "CI/CD with Bitrise and Azure DevOps, App Store and Play Store releases, monitoring with Firebase, Sentry, Crashlytics, analytics dashboards, and production support."
       }
     ]
   },
@@ -73,7 +81,7 @@
   },
   "footer": {
     "template": "© {year} {owner}. {suffix}",
-    "owner": "Gerald Adorza",
+    "owner": "Gerald Cadiz Adorza",
     "suffix": "Built for GitHub Pages."
   }
 }
