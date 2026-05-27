@@ -43,11 +43,65 @@
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: 40px;
+      min-height: auto;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: rgba(17, 24, 39, 0.78);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-cover {
+      min-height: 170px;
+      background: #9fb4b4;
+    }
+
+    .hero-body {
+      padding: 0 36px 36px;
+    }
+
+    .hero-avatar {
+      display: block;
+      width: clamp(140px, 20vw, 190px);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 6px solid var(--text);
+      border-radius: 50%;
+      margin-top: calc(clamp(140px, 20vw, 190px) / -3);
+      background: var(--text);
+    }
+
+    .hero-name-row {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      min-height: 80vh;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 56px);
+      line-height: 1.04;
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-role {
+      margin: 8px 0 0;
+      color: #e2e8f0;
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.25;
+    }
+
+    .hero-location {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-summary {
+      margin: 26px 0 0;
+      max-width: 820px;
     }
 
     .badge {
@@ -69,10 +123,10 @@
       letter-spacing: -0.05em;
     }
 
+    .hero-summary,
     .hero p {
       font-size: 20px;
       color: #cbd5e1;
-      max-width: 720px;
     }
 
     .actions {
@@ -101,43 +155,6 @@
     .button.secondary {
       color: var(--text);
       background: rgba(15, 23, 42, 0.65);
-    }
-
-    .profile-card {
-      border: 1px solid var(--border);
-      background: rgba(17, 24, 39, 0.78);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-    }
-
-    .profile-card h2 {
-      margin-top: 0;
-      font-size: 22px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .stat {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 26px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 14px;
     }
 
     section {
@@ -301,7 +318,6 @@
     }
 
     @media (max-width: 820px) {
-      .hero,
       .apps-grid,
       .skills,
       .contact {
@@ -309,8 +325,15 @@
       }
 
       .hero {
-        min-height: auto;
-        padding-top: 24px;
+        border-radius: 22px;
+      }
+
+      .hero-cover {
+        min-height: 150px;
+      }
+
+      .hero-body {
+        padding: 0 22px 26px;
       }
 
       .section-header,
@@ -411,31 +434,31 @@
     };
 
     const renderHero = (content) => {
-      const intro = createElement('div');
-      intro.appendChild(createElement('span', 'badge', content.badge));
-      intro.appendChild(createElement('h1', '', content.headline));
-      intro.appendChild(createElement('p', '', content.summary));
-      intro.appendChild(renderActions(content.actions || []));
+      const cover = createElement('div', 'hero-cover');
+      cover.style.background = content.coverColor;
 
-      const profile = createElement('aside', 'profile-card');
-      profile.appendChild(createElement('h2', '', content.profile.title));
-      profile.appendChild(createElement('p', '', content.profile.summary));
+      const body = createElement('div', 'hero-body');
 
-      const stats = createElement('div', 'stats');
-      content.profile.stats.forEach((stat) => {
-        const statCard = createElement('div', 'stat');
-        statCard.appendChild(createElement('strong', '', stat.value));
-        statCard.appendChild(createElement('span', '', stat.label));
-        stats.appendChild(statCard);
-      });
-      profile.appendChild(stats);
+      const avatar = createElement('img', 'hero-avatar');
+      avatar.src = content.profileImage;
+      avatar.alt = content.profileImageAlt;
+      body.appendChild(avatar);
 
-      heroSection.replaceChildren(intro, profile);
+      const nameRow = createElement('div', 'hero-name-row');
+      nameRow.appendChild(createElement('h1', '', content.name));
+      body.appendChild(nameRow);
+
+      body.appendChild(createElement('p', 'hero-role', content.role));
+      body.appendChild(createElement('p', 'hero-location', content.location));
+      body.appendChild(createElement('p', 'hero-summary', content.summary));
+      body.appendChild(renderActions(content.actions || []));
+
+      heroSection.replaceChildren(cover, body);
     };
 
     const renderProjectsHeader = (content) => {
       projectsTitle.textContent = content.title;
-      projectsSummary.textContent = content.summary;
+      projectsSummary.textContent = content.summary || '';
 
       if (!projectsGrid.childElementCount && content.loading) {
         projectsGrid.appendChild(createElement('p', 'app-status', content.loading));
@@ -445,6 +468,7 @@
     const renderSkills = (content) => {
       skillsTitle.textContent = content.title;
       skillsSummary.textContent = content.summary;
+      skillsSummary.hidden = !content.summary;
       skillsGrid.replaceChildren();
 
       content.items.forEach((skill) => {

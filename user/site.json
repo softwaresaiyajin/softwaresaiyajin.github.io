@@ -4,12 +4,16 @@
     "description": "Mobile developer portfolio of Gerald Adorza — iOS, React Native, Kotlin, fintech, messaging, e-commerce, and learning platform apps."
   },
   "hero": {
-    "badge": "Senior Mobile Developer · iOS · React Native · Kotlin",
-    "headline": "Building production mobile apps for fintech, learning, messaging, and commerce.",
+    "name": "Gerald Adorza",
+    "role": "iOS Engineer at Fintech Company",
+    "location": "Metro Manila",
+    "profileImage": "user/images/profile.png",
+    "profileImageAlt": "Gerald Adorza",
+    "coverColor": "#9fb4b4",
     "summary": "I'm Gerald Adorza, a mobile developer from the Philippines with experience shipping apps across iOS, React Native, and native Android. I focus on reliable app architecture, native integrations, releases, and practical product execution.",
     "actions": [
       {
-        "label": "Contact me",
+        "label": "Contact info",
         "href": "mailto:gerald.adorza@gmail.com",
         "variant": "primary"
       },
@@ -25,40 +29,18 @@
         "variant": "secondary",
         "external": true
       }
-    ],
-    "profile": {
-      "title": "What I help with",
-      "summary": "Native iOS development, React Native apps, app releases, native modules, chat systems, subscriptions, analytics, crash monitoring, and AI-assisted development workflows.",
-      "stats": [
-        {
-          "value": "5+",
-          "label": "Shipped app categories"
-        },
-        {
-          "value": "iOS",
-          "label": "Swift, UIKit, SwiftUI"
-        },
-        {
-          "value": "RN",
-          "label": "Cross-platform apps"
-        },
-        {
-          "value": "AI",
-          "label": "Coding workflows"
-        }
-      ]
-    }
+    ]
   },
   "projects": {
-    "title": "Selected apps",
-    "summary": "Production apps I've worked with across fintech, education, e-commerce, messaging, and travel.",
+    "title": "Projects",
+    "summary": "",
     "loading": "Loading projects...",
     "empty": "No projects found yet.",
     "error": "Projects could not be loaded."
   },
   "coreSkills": {
     "title": "Core skills",
-    "summary": "Mobile engineering areas I can contribute to immediately.",
+    "summary": "",
     "items": [
       {
         "title": "Native iOS",
