@@ -29,6 +29,21 @@ const getFirstImage = async (projectDirectory) => {
   }
 };
 
+const normalizeUrls = (description) => {
+  if (Array.isArray(description.urls)) {
+    return description.urls;
+  }
+
+  if (description.url) {
+    return [{
+      cta: 'View live project →',
+      link: description.url
+    }];
+  }
+
+  return [];
+};
+
 const normalizeProject = async (directoryName) => {
   const projectDirectory = path.join(projectsDirectory, directoryName);
   const descriptionPath = path.join(projectDirectory, 'description.json');
@@ -40,7 +55,7 @@ const normalizeProject = async (directoryName) => {
     title: description.title,
     summary: description.summary,
     techStack: description.techStack || description['tech-stack'] || [],
-    url: description.url,
+    urls: normalizeUrls(description),
     category: description.category,
     ...(image ? { image } : {})
   };

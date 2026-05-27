@@ -2,6 +2,11 @@
   "title": "Paysera",
   "summary": "Fintech super app experience involving mobile banking-style flows, account features, and production-grade app reliability.",
   "tech-stack": ["Swift", "iOS", "Fintech"],
-  "url": "https://apps.apple.com/us/app/paysera-super-app/id737308884",
+  "urls": [
+    {
+      "cta": "View on Appstore →",
+      "link": "https://apps.apple.com/us/app/paysera-super-app/id737308884"
+    }
+  ],
   "category": "Fintech"
 }

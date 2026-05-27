@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gerald Adorza | Mobile Developer Portfolio</title>
-  <meta name="description" content="Mobile developer portfolio of Gerald Adorza — iOS, React Native, Kotlin, fintech, messaging, e-commerce, and learning platform apps." />
+  <title></title>
+  <meta name="description" content="" />
   <style>
     :root {
       --bg: #0f172a;
@@ -176,6 +176,8 @@
     }
 
     .app-card {
+      display: flex;
+      flex-direction: column;
       border: 1px solid var(--border);
       background: rgba(17, 24, 39, 0.82);
       border-radius: 24px;
@@ -237,6 +239,14 @@
       flex-wrap: wrap;
       gap: 8px;
       margin: 18px 0;
+    }
+
+    .app-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 6px;
     }
 
     .pill {
@@ -316,90 +326,47 @@
 </head>
 <body>
   <main class="container">
-    <section class="hero">
-      <div>
-        <span class="badge">Senior Mobile Developer · iOS · React Native · Kotlin</span>
-        <h1>Building production mobile apps for fintech, learning, messaging, and commerce.</h1>
-        <p>
-          I'm Gerald Adorza, a mobile developer from the Philippines with experience shipping apps across iOS, React Native, and native Android. I focus on reliable app architecture, native integrations, releases, and practical product execution.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="mailto:gerald.adorza@gmail.com">Contact me</a>
-          <a class="button secondary" href="https://www.linkedin.com/in/gerald-adorza/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="button secondary" href="https://github.com/geraldadorza" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-      </div>
-
-      <aside class="profile-card">
-        <h2>What I help with</h2>
-        <p>
-          Native iOS development, React Native apps, app releases, native modules, chat systems, subscriptions, analytics, crash monitoring, and AI-assisted development workflows.
-        </p>
-        <div class="stats">
-          <div class="stat"><strong>5+</strong><span>Shipped app categories</span></div>
-          <div class="stat"><strong>iOS</strong><span>Swift, UIKit, SwiftUI</span></div>
-          <div class="stat"><strong>RN</strong><span>Cross-platform apps</span></div>
-          <div class="stat"><strong>AI</strong><span>Coding workflows</span></div>
-        </div>
-      </aside>
+    <section class="hero" id="hero" aria-live="polite">
     </section>
 
     <section id="apps">
       <div class="section-header">
-        <h2>Selected apps</h2>
-        <p>Production apps I've worked with across fintech, education, e-commerce, messaging, and travel.</p>
+        <h2 id="projects-title"></h2>
+        <p id="projects-summary"></p>
       </div>
 
       <div class="apps-grid loading" id="projects-grid" aria-live="polite">
-        <p class="app-status">Loading projects...</p>
       </div>
     </section>
 
     <section id="skills">
       <div class="section-header">
-        <h2>Core skills</h2>
-        <p>Mobile engineering areas I can contribute to immediately.</p>
+        <h2 id="skills-title"></h2>
+        <p id="skills-summary"></p>
       </div>
 
-      <div class="skills">
-        <div class="skill-card">
-          <h3>Native iOS</h3>
-          <p>Swift, UIKit, SwiftUI, Combine, MVVM, app architecture, debugging, releases.</p>
-        </div>
-        <div class="skill-card">
-          <h3>React Native</h3>
-          <p>Cross-platform features, native bridge work, app-store delivery, product flows.</p>
-        </div>
-        <div class="skill-card">
-          <h3>Native integrations</h3>
-          <p>In-app purchases, analytics, notifications, chat SDKs, media, and native modules.</p>
-        </div>
-        <div class="skill-card">
-          <h3>AI workflows</h3>
-          <p>Using AI coding tools for bug fixing, feature development, code review, and workflow automation.</p>
-        </div>
+      <div class="skills" id="skills-grid" aria-live="polite">
       </div>
     </section>
 
-    <section class="contact">
-      <div>
-        <h2>Need a senior mobile developer?</h2>
-        <p>I'm open to remote freelance, contract, and long-term mobile development opportunities.</p>
-      </div>
-      <div class="actions">
-        <a class="button primary" href="mailto:gerald.adorza@gmail.com">Email me</a>
-      </div>
+    <section class="contact" id="contact">
     </section>
   </main>
 
-  <footer>
-    © <span id="year"></span> Gerald Adorza. Built for GitHub Pages.
+  <footer id="footer">
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
+    const heroSection = document.getElementById('hero');
+    const projectsTitle = document.getElementById('projects-title');
+    const projectsSummary = document.getElementById('projects-summary');
     const projectsGrid = document.getElementById('projects-grid');
+    const skillsTitle = document.getElementById('skills-title');
+    const skillsSummary = document.getElementById('skills-summary');
+    const skillsGrid = document.getElementById('skills-grid');
+    const contactSection = document.getElementById('contact');
+    const footer = document.getElementById('footer');
+    let siteContent;
 
     const createElement = (tag, className, text) => {
       const element = document.createElement(tag);
@@ -412,12 +379,124 @@
       return element;
     };
 
+    const normalizeUrls = (project) => {
+      if (Array.isArray(project.urls)) {
+        return project.urls;
+      }
+
+      return [];
+    };
+
+    const applyMeta = (content) => {
+      document.title = content.title;
+      document.querySelector('meta[name="description"]').content = content.description;
+    };
+
+    const renderActions = (actions) => {
+      const actionsContainer = createElement('div', 'actions');
+
+      actions.forEach((action) => {
+        const link = createElement('a', `button ${action.variant || 'secondary'}`, action.label);
+        link.href = action.href;
+
+        if (action.external) {
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+        }
+
+        actionsContainer.appendChild(link);
+      });
+
+      return actionsContainer;
+    };
+
+    const renderHero = (content) => {
+      const intro = createElement('div');
+      intro.appendChild(createElement('span', 'badge', content.badge));
+      intro.appendChild(createElement('h1', '', content.headline));
+      intro.appendChild(createElement('p', '', content.summary));
+      intro.appendChild(renderActions(content.actions || []));
+
+      const profile = createElement('aside', 'profile-card');
+      profile.appendChild(createElement('h2', '', content.profile.title));
+      profile.appendChild(createElement('p', '', content.profile.summary));
+
+      const stats = createElement('div', 'stats');
+      content.profile.stats.forEach((stat) => {
+        const statCard = createElement('div', 'stat');
+        statCard.appendChild(createElement('strong', '', stat.value));
+        statCard.appendChild(createElement('span', '', stat.label));
+        stats.appendChild(statCard);
+      });
+      profile.appendChild(stats);
+
+      heroSection.replaceChildren(intro, profile);
+    };
+
+    const renderProjectsHeader = (content) => {
+      projectsTitle.textContent = content.title;
+      projectsSummary.textContent = content.summary;
+
+      if (!projectsGrid.childElementCount && content.loading) {
+        projectsGrid.appendChild(createElement('p', 'app-status', content.loading));
+      }
+    };
+
+    const renderSkills = (content) => {
+      skillsTitle.textContent = content.title;
+      skillsSummary.textContent = content.summary;
+      skillsGrid.replaceChildren();
+
+      content.items.forEach((skill) => {
+        const card = createElement('div', 'skill-card');
+        card.appendChild(createElement('h3', '', skill.title));
+        card.appendChild(createElement('p', '', skill.summary));
+        skillsGrid.appendChild(card);
+      });
+    };
+
+    const renderContact = (content) => {
+      const copy = createElement('div');
+      copy.appendChild(createElement('h2', '', content.title));
+      copy.appendChild(createElement('p', '', content.summary));
+
+      contactSection.replaceChildren(copy, renderActions(content.actions || []));
+    };
+
+    const renderFooter = (content) => {
+      footer.textContent = content.template
+        .replace('{year}', new Date().getFullYear())
+        .replace('{owner}', content.owner)
+        .replace('{suffix}', content.suffix);
+    };
+
+    const loadSiteContent = async () => {
+      try {
+        const response = await fetch('user/site.json', { cache: 'no-store' });
+
+        if (!response.ok) {
+          throw new Error(`Site content failed with ${response.status}`);
+        }
+
+        const content = await response.json();
+        siteContent = content;
+        applyMeta(content.meta);
+        renderHero(content.hero);
+        renderProjectsHeader(content.projects);
+        renderSkills(content.coreSkills);
+        renderContact(content.contact);
+        renderFooter(content.footer);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     const normalizeProject = (project, slug) => ({
       slug,
       title: project.title,
       summary: project.summary,
       techStack: project.techStack || project['tech-stack'] || [],
-      url: project.url,
+      urls: normalizeUrls(project),
       category: project.category,
       image: project.image
     });
@@ -536,12 +615,18 @@
       });
       card.appendChild(meta);
 
-      if (project.url) {
-        const link = createElement('a', '', 'View live project ->');
-        link.href = project.url;
-        link.target = '_blank';
-        link.rel = 'noreferrer';
-        card.appendChild(link);
+      if (project.urls.length) {
+        const links = createElement('div', 'app-links');
+
+        project.urls.forEach((url) => {
+          const link = createElement('a', '', url.cta);
+          link.href = url.link;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+          links.appendChild(link);
+        });
+
+        card.appendChild(links);
       }
 
       return card;
@@ -555,7 +640,7 @@
 
         if (!projects.length) {
           projectsGrid.classList.add('empty');
-          projectsGrid.appendChild(createElement('p', 'app-status', 'No projects found yet.'));
+          projectsGrid.appendChild(createElement('p', 'app-status', siteContent.projects.empty));
           return;
         }
 
@@ -565,12 +650,17 @@
       } catch (error) {
         projectsGrid.classList.remove('loading');
         projectsGrid.classList.add('empty');
-        projectsGrid.replaceChildren(createElement('p', 'app-status', 'Projects could not be loaded.'));
+        projectsGrid.replaceChildren(createElement('p', 'app-status', siteContent.projects.error));
         console.error(error);
       }
     };
 
-    renderProjects();
+    const initialize = async () => {
+      await loadSiteContent();
+      renderProjects();
+    };
+
+    initialize();
   </script>
 </body>
 </html>

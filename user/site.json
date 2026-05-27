@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "Gerald Adorza | Mobile Developer Portfolio",
+    "description": "Mobile developer portfolio of Gerald Adorza — iOS, React Native, Kotlin, fintech, messaging, e-commerce, and learning platform apps."
+  },
+  "hero": {
+    "badge": "Senior Mobile Developer · iOS · React Native · Kotlin",
+    "headline": "Building production mobile apps for fintech, learning, messaging, and commerce.",
+    "summary": "I'm Gerald Adorza, a mobile developer from the Philippines with experience shipping apps across iOS, React Native, and native Android. I focus on reliable app architecture, native integrations, releases, and practical product execution.",
+    "actions": [
+      {
+        "label": "Contact me",
+        "href": "mailto:gerald.adorza@gmail.com",
+        "variant": "primary"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/gadorza",
+        "variant": "secondary",
+        "external": true
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/softwaresaiyajin",
+        "variant": "secondary",
+        "external": true
+      }
+    ],
+    "profile": {
+      "title": "What I help with",
+      "summary": "Native iOS development, React Native apps, app releases, native modules, chat systems, subscriptions, analytics, crash monitoring, and AI-assisted development workflows.",
+      "stats": [
+        {
+          "value": "5+",
+          "label": "Shipped app categories"
+        },
+        {
+          "value": "iOS",
+          "label": "Swift, UIKit, SwiftUI"
+        },
+        {
+          "value": "RN",
+          "label": "Cross-platform apps"
+        },
+        {
+          "value": "AI",
+          "label": "Coding workflows"
+        }
+      ]
+    }
+  },
+  "projects": {
+    "title": "Selected apps",
+    "summary": "Production apps I've worked with across fintech, education, e-commerce, messaging, and travel.",
+    "loading": "Loading projects...",
+    "empty": "No projects found yet.",
+    "error": "Projects could not be loaded."
+  },
+  "coreSkills": {
+    "title": "Core skills",
+    "summary": "Mobile engineering areas I can contribute to immediately.",
+    "items": [
+      {
+        "title": "Native iOS",
+        "summary": "Swift, UIKit, SwiftUI, Combine, MVVM, app architecture, debugging, releases."
+      },
+      {
+        "title": "React Native",
+        "summary": "Cross-platform features, native bridge work, app-store delivery, product flows."
+      },
+      {
+        "title": "Native integrations",
+        "summary": "In-app purchases, analytics, notifications, chat SDKs, media, and native modules."
+      },
+      {
+        "title": "AI workflows",
+        "summary": "Using AI coding tools for bug fixing, feature development, code review, and workflow automation."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Need a senior mobile developer?",
+    "summary": "I'm open to remote freelance, contract, and long-term mobile development opportunities.",
+    "actions": [
+      {
+        "label": "Email me",
+        "href": "mailto:gerald.adorza@gmail.com",
+        "variant": "primary"
+      }
+    ]
+  },
+  "footer": {
+    "template": "© {year} {owner}. {suffix}",
+    "owner": "Gerald Adorza",
+    "suffix": "Built for GitHub Pages."
+  }
+}

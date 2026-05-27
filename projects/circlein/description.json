@@ -2,6 +2,11 @@
   "title": "CircleIn",
   "summary": "Learning platform app with complex messaging, chat, communities, media, analytics, and modern iOS architecture work.",
   "tech-stack": ["Swift", "UIKit", "Combine", "Chat"],
-  "url": "https://apps.apple.com/us/app/circlein-circle-in-daily/id969803973",
+  "urls": [
+    {
+      "cta": "View on Appstore →",
+      "link": "https://apps.apple.com/us/app/circlein/id6444419138"
+    }
+  ],
   "category": "Learning Platform"
 }
