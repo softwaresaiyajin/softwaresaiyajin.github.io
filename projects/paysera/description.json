@@ -1,5 +1,6 @@
 {
   "title": "Paysera",
+  "order": 1,
   "summary": "Fintech super app experience involving mobile banking-style flows, account features, and production-grade app reliability.",
   "tech-stack": ["Swift", "iOS", "Fintech"],
   "urls": [

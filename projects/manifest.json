@@ -1,25 +1,45 @@
 [
   {
-    "slug": "cebu-pacific",
-    "title": "Cebu Pacific",
-    "summary": "Airline mobile app experience involving travel booking flows, passenger self-service, mobile UX, and production app delivery.",
+    "slug": "paysera",
+    "title": "Paysera",
+    "order": 1,
+    "summary": "Fintech super app experience involving mobile banking-style flows, account features, and production-grade app reliability.",
     "techStack": [
-      "Mobile",
-      "Travel",
-      "Airline"
+      "Swift",
+      "iOS",
+      "Fintech"
     ],
     "urls": [
       {
-        "cta": "View on App Store →",
-        "link": "https://apps.apple.com/ph/app/cebu-pacific/id1210712639"
+        "cta": "View on Appstore →",
+        "link": "https://apps.apple.com/us/app/paysera-super-app/id737308884"
       }
     ],
-    "category": "Travel",
-    "icon": "projects/cebu-pacific/images/app-icon/app-icon.jpg"
+    "category": "Fintech",
+    "icon": "projects/paysera/images/app-icon/app-icon.jpg"
+  },
+  {
+    "slug": "ozsale",
+    "title": "Ozsale",
+    "order": 2,
+    "summary": "E-commerce mobile app experience involving shopping flows, product browsing, checkout-related UX, and production app maintenance.",
+    "techStack": [
+      "Swift",
+      "iOS",
+      "E-commerce"
+    ],
+    "urls": [
+      {
+        "cta": "View on Appstore →",
+        "link": "https://apps.apple.com/au/app/ozsale/id482821532"
+      }
+    ],
+    "category": "E-commerce"
   },
   {
     "slug": "circlein",
     "title": "CircleIn",
+    "order": 3,
     "summary": "Learning platform app with complex messaging, chat, communities, media, analytics, and modern iOS architecture work.",
     "techStack": [
       "Swift",
@@ -37,8 +57,28 @@
     "icon": "projects/circlein/images/app-icon/app-icon.jpg"
   },
   {
+    "slug": "cebu-pacific",
+    "title": "Cebu Pacific",
+    "order": 4,
+    "summary": "Airline mobile app experience involving travel booking flows, passenger self-service, mobile UX, and production app delivery.",
+    "techStack": [
+      "Mobile",
+      "Travel",
+      "Airline"
+    ],
+    "urls": [
+      {
+        "cta": "View on App Store →",
+        "link": "https://apps.apple.com/ph/app/cebu-pacific/id1210712639"
+      }
+    ],
+    "category": "Travel",
+    "icon": "projects/cebu-pacific/images/app-icon/app-icon.jpg"
+  },
+  {
     "slug": "itexmo",
-    "title": "iTexMo",
+    "title": "iTexmo",
+    "order": 5,
     "summary": "Messaging-focused mobile app experience using React Native, with cross-platform delivery and native mobile considerations.",
     "techStack": [
       "React Native",
@@ -55,43 +95,9 @@
     "icon": "projects/itexmo/images/app-icon/app-icon.jpg"
   },
   {
-    "slug": "ozsale",
-    "title": "Ozsale",
-    "summary": "E-commerce mobile app experience involving shopping flows, product browsing, checkout-related UX, and production app maintenance.",
-    "techStack": [
-      "Swift",
-      "iOS",
-      "E-commerce"
-    ],
-    "urls": [
-      {
-        "cta": "View on Appstore →",
-        "link": "https://apps.apple.com/au/app/ozsale/id482821532"
-      }
-    ],
-    "category": "E-commerce"
-  },
-  {
-    "slug": "paysera",
-    "title": "Paysera",
-    "summary": "Fintech super app experience involving mobile banking-style flows, account features, and production-grade app reliability.",
-    "techStack": [
-      "Swift",
-      "iOS",
-      "Fintech"
-    ],
-    "urls": [
-      {
-        "cta": "View on Appstore →",
-        "link": "https://apps.apple.com/us/app/paysera-super-app/id737308884"
-      }
-    ],
-    "category": "Fintech",
-    "icon": "projects/paysera/images/app-icon/app-icon.jpg"
-  },
-  {
     "slug": "viva-aerobus",
     "title": "Viva Aerobus",
+    "order": 6,
     "summary": "Airline mobile app experience involving travel flows, mobile UX, and app-store shipped production delivery.",
     "techStack": [
       "Xamarin",

@@ -53,6 +53,7 @@ const normalizeProject = async (directoryName) => {
   return {
     slug: directoryName,
     title: description.title,
+    order: description.order,
     summary: description.summary,
     techStack: description.techStack || description['tech-stack'] || [],
     urls: normalizeUrls(description),
@@ -66,7 +67,9 @@ const projectDirectories = (await fs.readdir(projectsDirectory, { withFileTypes:
   .map((entry) => entry.name)
   .sort((a, b) => a.localeCompare(b));
 
-const projects = await Promise.all(projectDirectories.map(normalizeProject));
+const projects = (await Promise.all(projectDirectories.map(normalizeProject)))
+  .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER)
+    || a.slug.localeCompare(b.slug));
 
 await fs.writeFile(manifestPath, `${JSON.stringify(projects, null, 2)}\n`);
 

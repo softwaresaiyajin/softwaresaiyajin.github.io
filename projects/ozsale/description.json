@@ -1,5 +1,6 @@
 {
   "title": "Ozsale",
+  "order": 2,
   "summary": "E-commerce mobile app experience involving shopping flows, product browsing, checkout-related UX, and production app maintenance.",
   "tech-stack": ["Swift", "iOS", "E-commerce"],
   "urls": [

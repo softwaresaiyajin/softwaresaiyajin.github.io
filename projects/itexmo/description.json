@@ -1,5 +1,6 @@
 {
-  "title": "iTexMo",
+  "title": "iTexmo",
+  "order": 5,
   "summary": "Messaging-focused mobile app experience using React Native, with cross-platform delivery and native mobile considerations.",
   "tech-stack": ["React Native", "Messaging", "Cross-platform"],
   "urls": [
