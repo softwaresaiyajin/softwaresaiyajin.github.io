@@ -1,0 +1,39 @@
+[
+  {
+    "slug": "circlein",
+    "title": "CircleIn",
+    "summary": "Learning platform app with complex messaging, chat, communities, media, analytics, and modern iOS architecture work.",
+    "techStack": [
+      "Swift",
+      "UIKit",
+      "Combine",
+      "Chat"
+    ],
+    "url": "https://apps.apple.com/us/app/circlein-circle-in-daily/id969803973",
+    "category": "Learning Platform"
+  },
+  {
+    "slug": "ozsale",
+    "title": "OzSale",
+    "summary": "E-commerce mobile app experience involving shopping flows, product browsing, checkout-related UX, and production app maintenance.",
+    "techStack": [
+      "Swift",
+      "iOS",
+      "E-commerce"
+    ],
+    "url": "https://apps.apple.com/au/app/ozsale/id482821532",
+    "category": "E-commerce"
+  },
+  {
+    "slug": "paysera",
+    "title": "Paysera",
+    "summary": "Fintech super app experience involving mobile banking-style flows, account features, and production-grade app reliability.",
+    "techStack": [
+      "Swift",
+      "iOS",
+      "Fintech"
+    ],
+    "url": "https://apps.apple.com/us/app/paysera-super-app/id737308884",
+    "category": "Fintech"
+  }
+]

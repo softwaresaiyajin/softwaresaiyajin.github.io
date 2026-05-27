@@ -170,6 +170,11 @@
       gap: 22px;
     }
 
+    .apps-grid.loading,
+    .apps-grid.empty {
+      grid-template-columns: 1fr;
+    }
+
     .app-card {
       border: 1px solid var(--border);
       background: rgba(17, 24, 39, 0.82);
@@ -207,6 +212,24 @@
 
     .app-card p {
       color: #cbd5e1;
+    }
+
+    .app-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      margin-bottom: 18px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .app-status {
+      border: 1px solid var(--border);
+      background: rgba(17, 24, 39, 0.82);
+      border-radius: 20px;
+      color: var(--muted);
+      padding: 24px;
     }
 
     .meta {
@@ -327,77 +350,8 @@
         <p>Production apps I've worked with across fintech, education, e-commerce, messaging, and travel.</p>
       </div>
 
-      <div class="apps-grid">
-        <article class="app-card">
-          <div class="app-top">
-            <h3>Paysera</h3>
-            <span class="tag">Fintech</span>
-          </div>
-          <p>Fintech super app experience involving mobile banking-style flows, account features, and production-grade app reliability.</p>
-          <div class="meta">
-            <span class="pill">Swift</span>
-            <span class="pill">iOS</span>
-            <span class="pill">Fintech</span>
-          </div>
-          <a href="https://apps.apple.com/us/app/paysera-super-app/id737308884" target="_blank" rel="noreferrer">View on App Store →</a>
-        </article>
-
-        <article class="app-card">
-          <div class="app-top">
-            <h3>CircleIn</h3>
-            <span class="tag">Learning Platform</span>
-          </div>
-          <p>Learning platform app with complex messaging, chat, communities, media, analytics, and modern iOS architecture work.</p>
-          <div class="meta">
-            <span class="pill">Swift</span>
-            <span class="pill">UIKit</span>
-            <span class="pill">Combine</span>
-            <span class="pill">Chat</span>
-          </div>
-          <a href="https://apps.apple.com/us/app/circlein-circle-in-daily/id969803973" target="_blank" rel="noreferrer">View on App Store →</a>
-        </article>
-
-        <article class="app-card">
-          <div class="app-top">
-            <h3>OzSale</h3>
-            <span class="tag">E-commerce</span>
-          </div>
-          <p>E-commerce mobile app experience involving shopping flows, product browsing, checkout-related UX, and production app maintenance.</p>
-          <div class="meta">
-            <span class="pill">Swift</span>
-            <span class="pill">iOS</span>
-            <span class="pill">E-commerce</span>
-          </div>
-          <a href="https://apps.apple.com/au/app/ozsale/id482821532" target="_blank" rel="noreferrer">View on App Store →</a>
-        </article>
-
-        <article class="app-card">
-          <div class="app-top">
-            <h3>iTexMo</h3>
-            <span class="tag">Messaging</span>
-          </div>
-          <p>Messaging-focused mobile app experience using React Native, with cross-platform delivery and native mobile considerations.</p>
-          <div class="meta">
-            <span class="pill">React Native</span>
-            <span class="pill">Messaging</span>
-            <span class="pill">Cross-platform</span>
-          </div>
-          <a href="https://apps.apple.com/ph/app/itexmo/id6447108013" target="_blank" rel="noreferrer">View on App Store →</a>
-        </article>
-
-        <article class="app-card">
-          <div class="app-top">
-            <h3>Viva Aerobus</h3>
-            <span class="tag">Travel</span>
-          </div>
-          <p>Airline mobile app experience involving travel flows, mobile UX, and app-store shipped production delivery.</p>
-          <div class="meta">
-            <span class="pill">Xamarin</span>
-            <span class="pill">Mobile</span>
-            <span class="pill">Travel</span>
-          </div>
-          <a href="https://apps.apple.com/us/app/viva-aerobus-fly/id1563307248" target="_blank" rel="noreferrer">View on App Store →</a>
-        </article>
+      <div class="apps-grid loading" id="projects-grid" aria-live="polite">
+        <p class="app-status">Loading projects...</p>
       </div>
     </section>
 
@@ -444,6 +398,179 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const projectsGrid = document.getElementById('projects-grid');
+
+    const createElement = (tag, className, text) => {
+      const element = document.createElement(tag);
+      if (className) {
+        element.className = className;
+      }
+      if (text) {
+        element.textContent = text;
+      }
+      return element;
+    };
+
+    const normalizeProject = (project, slug) => ({
+      slug,
+      title: project.title,
+      summary: project.summary,
+      techStack: project.techStack || project['tech-stack'] || [],
+      url: project.url,
+      category: project.category,
+      image: project.image
+    });
+
+    const getGitHubPagesRepository = () => {
+      const hostParts = window.location.hostname.split('.');
+
+      if (hostParts.length < 3 || hostParts.slice(-2).join('.') !== 'github.io') {
+        return null;
+      }
+
+      const owner = hostParts[0];
+      return {
+        owner,
+        repo: `${owner}.github.io`
+      };
+    };
+
+    const getFirstGitHubImage = async (apiBaseUrl, slug) => {
+      try {
+        const response = await fetch(`${apiBaseUrl}/projects/${slug}/images`, { cache: 'no-store' });
+
+        if (!response.ok) {
+          return undefined;
+        }
+
+        const files = await response.json();
+        const image = files
+          .filter((file) => file.type === 'file' && /\.(avif|gif|jpe?g|png|webp)$/i.test(file.name))
+          .sort((a, b) => a.name.localeCompare(b.name))[0];
+
+        return image ? `projects/${slug}/images/${image.name}` : undefined;
+      } catch (error) {
+        console.warn(`Project image lookup failed for ${slug}`, error);
+        return undefined;
+      }
+    };
+
+    const loadProjectsFromGitHub = async () => {
+      const repository = getGitHubPagesRepository();
+
+      if (!repository) {
+        return null;
+      }
+
+      const apiBaseUrl = `https://api.github.com/repos/${repository.owner}/${repository.repo}/contents`;
+      const response = await fetch(`${apiBaseUrl}/projects`, { cache: 'no-store' });
+
+      if (!response.ok) {
+        throw new Error(`GitHub project lookup failed with ${response.status}`);
+      }
+
+      const entries = await response.json();
+      const projectDirectories = entries
+        .filter((entry) => entry.type === 'dir')
+        .map((entry) => entry.name)
+        .sort((a, b) => a.localeCompare(b));
+
+      return Promise.all(projectDirectories.map(async (slug) => {
+        const descriptionResponse = await fetch(`projects/${slug}/description.json`, { cache: 'no-store' });
+
+        if (!descriptionResponse.ok) {
+          throw new Error(`Project description failed for ${slug}`);
+        }
+
+        const description = await descriptionResponse.json();
+        const image = description.image || await getFirstGitHubImage(apiBaseUrl, slug);
+
+        return normalizeProject({ ...description, image }, slug);
+      }));
+    };
+
+    const loadProjectsFromManifest = async () => {
+      const response = await fetch('projects/manifest.json', { cache: 'no-store' });
+
+      if (!response.ok) {
+        throw new Error(`Project manifest failed with ${response.status}`);
+      }
+
+      return response.json();
+    };
+
+    const loadProjects = async () => {
+      try {
+        return await loadProjectsFromGitHub() || await loadProjectsFromManifest();
+      } catch (error) {
+        console.warn(error);
+        return loadProjectsFromManifest();
+      }
+    };
+
+    const renderProject = (project) => {
+      const card = createElement('article', 'app-card');
+
+      if (project.image) {
+        const image = createElement('img', 'app-image');
+        image.src = project.image;
+        image.alt = `${project.title} preview`;
+        image.loading = 'lazy';
+        card.appendChild(image);
+      }
+
+      const top = createElement('div', 'app-top');
+      top.appendChild(createElement('h3', '', project.title));
+
+      if (project.category) {
+        top.appendChild(createElement('span', 'tag', project.category));
+      }
+
+      card.appendChild(top);
+      card.appendChild(createElement('p', '', project.summary));
+
+      const meta = createElement('div', 'meta');
+      project.techStack.forEach((tech) => {
+        meta.appendChild(createElement('span', 'pill', tech));
+      });
+      card.appendChild(meta);
+
+      if (project.url) {
+        const link = createElement('a', '', 'View live project ->');
+        link.href = project.url;
+        link.target = '_blank';
+        link.rel = 'noreferrer';
+        card.appendChild(link);
+      }
+
+      return card;
+    };
+
+    const renderProjects = async () => {
+      try {
+        const projects = await loadProjects();
+        projectsGrid.replaceChildren();
+        projectsGrid.classList.remove('loading', 'empty');
+
+        if (!projects.length) {
+          projectsGrid.classList.add('empty');
+          projectsGrid.appendChild(createElement('p', 'app-status', 'No projects found yet.'));
+          return;
+        }
+
+        projects.forEach((project) => {
+          projectsGrid.appendChild(renderProject(project));
+        });
+      } catch (error) {
+        projectsGrid.classList.remove('loading');
+        projectsGrid.classList.add('empty');
+        projectsGrid.replaceChildren(createElement('p', 'app-status', 'Projects could not be loaded.'));
+        console.error(error);
+      }
+    };
+
+    renderProjects();
   </script>
 </body>
 </html>
