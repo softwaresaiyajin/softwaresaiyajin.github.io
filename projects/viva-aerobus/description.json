@@ -1,0 +1,13 @@
+{
+  "title": "Viva Aerobus",
+  "order": 6,
+  "summary": "Airline mobile app experience involving travel flows, mobile UX, and app-store shipped production delivery.",
+  "tech-stack": ["Xamarin", "Mobile", "Travel"],
+  "urls": [
+    {
+      "cta": "View on App Store →",
+      "link": "https://apps.apple.com/us/app/viva-aerobus-fly/id1563307248"
+    }
+  ],
+  "category": "Travel"
+}
